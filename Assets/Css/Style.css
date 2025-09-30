@@ -24,7 +24,7 @@ a{ color:var(--vv-main) }
 
 /* ===== Navbar / logo ===== */
 .navbar{ min-height:56px }
-.brand-logo{ height:32px; width:auto; border-radius:8px }
+.brand-logo{ height:32px; width:auto; border-radius:15px }
 .logo-word{ letter-spacing:.5px; white-space:nowrap }
 
 /* ===== Hero (altura real en móvil) ===== */
@@ -97,7 +97,7 @@ footer{ background:var(--vv-deep); color:#dfe8e3 }
 /* ===== Imágenes dentro de enlaces ===== */
 /* No achiques todas; limita el estilo al logo del navbar */
 a img{ height:auto; width:auto; border-radius:0 }
-.navbar-brand > img{ width:55px; height:auto; border-radius:10px }
+.navbar-brand > img{ width:55px; height:auto; border-radius:24px }
 
 /* Swiper de pérgolas: card limpia, sin deformaciones */
 .vv-swiper{
