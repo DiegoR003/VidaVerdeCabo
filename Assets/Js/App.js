@@ -3,7 +3,7 @@
     document.getElementById('y').textContent = new Date().getFullYear();
 
     // Swiper (pérgolas y arte)
-    new Swiper('.swiper', {
+    new Swiper('.vv-swiper', {
       loop: true,
       spaceBetween: 16,
       autoplay: { delay: 3500, disableOnInteraction: false },

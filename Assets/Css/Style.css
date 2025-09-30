@@ -1,54 +1,157 @@
-/* Variables de color y estilos globales */
- :root{
-      --vv-deep:#0f3d2e;   /* fondo header/footer */
-      --vv-main:#1b5e20;   /* botones, acentos oscuros */
-      --vv-accent:#2e7d32; /* títulos/secciones */
-      --vv-soft:#f1f8f6;   /* fondos suaves */
-      --vv-text:#2b2b2b;
-    }
-    body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:var(--vv-text)}
-    a{color:var(--vv-main)}
-    .btn-vv{background:var(--vv-main); color:#fff; border:none}
-    .btn-vv:hover{background:#154a19; color:#fff}
-    .section-title{color:var(--vv-accent); font-weight:800; letter-spacing:.5px}
-    .subtle{color:#5b6b61}
-    .hero{
-      position:relative; min-height:80vh; color:#fff;
-      background:linear-gradient( to bottom, rgba(15,61,46,.55), rgba(15,61,46,.85)),
-                 url("../Img/Macetas/hero.jpeg") center/cover no-repeat;
-    }
-    .hero .headline{font-size:clamp(32px,5vw,64px); font-weight:900; line-height:1.05}
-    .hero .tag{background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:999px; padding:.4rem .9rem; display:inline-block}
-    .pill{display:inline-block; padding:.35rem .75rem; border-radius:999px; background:var(--vv-soft); color:var(--vv-main); font-weight:600; font-size:.9rem}
-    .vv-card{border:0; height: 600px; width: 500px; border-radius:10px; object-fit: contain; box-shadow:0 10px 30px rgba(0,0,0,.06)}
-    .vv-icon{width:56px; height:56px; display:grid; place-items:center; border-radius:14px; background:var(--vv-soft); color:var(--vv-main); font-size:26px}
-    .bg-soft{background:var(--vv-soft)}
-    /* Before/After slider */
-    .compare{
-      position:relative; aspect-ratio: 16/9; border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.08)
-    }
-    .compare img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-    .compare .after{clip-path:inset(0 0 0 50%)}
-    .compare .handle{
-      position:absolute; inset:0; display:flex; justify-content:center
-    }
-    .compare .bar{
-      width:3px; background:#fff; height:100%; box-shadow:0 0 0 2px rgba(0,0,0,.1)
-    }
-    .compare .knob{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:44px; height:44px; border-radius:50%;
-      background:#fff; display:grid; place-items:center; box-shadow:0 6px 20px rgba(0,0,0,.18)
-    }
-    footer{background:var(--vv-deep); color:#dfe8e3}
-    .logo-word{letter-spacing:.5px}
-    .brandbar{
-      display:flex; gap:.65rem; flex-wrap:wrap
-    }
-    .brandbar .pill{background:#e7f2ee; color:#0f3d2e}
+/* ===== Reset fino para evitar cortes/overflow ===== */
+html, body { overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
 
-    a img {
-    width: 55px;
-    height: auto;
-    border-radius: 20px;
+/* ===== Paleta y tipografía ===== */
+:root{
+  --vv-deep:#0f3d2e;
+  --vv-main:#1b5e20;
+  --vv-accent:#2e7d32;
+  --vv-soft:#f1f8f6;
+  --vv-text:#2b2b2b;
+}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+  color:var(--vv-text);
+}
+a{ color:var(--vv-main) }
+
+/* ===== Botones y títulos ===== */
+.btn-vv{ background:var(--vv-main); color:#fff; border:none }
+.btn-vv:hover{ background:#154a19; color:#fff }
+.section-title{ color:var(--vv-accent); font-weight:800; letter-spacing:.5px }
+.subtle{ color:#5b6b61 }
+
+/* ===== Navbar / logo ===== */
+.navbar{ min-height:56px }
+.brand-logo{ height:32px; width:auto; border-radius:8px }
+.logo-word{ letter-spacing:.5px; white-space:nowrap }
+
+/* ===== Hero (altura real en móvil) ===== */
+.hero{
+  position:relative;
+  min-height:100svh;           /* altura real visible en móviles */
+  min-height:100vh;            /* fallback */
+  color:#fff;
+  background:
+    linear-gradient(to bottom, rgba(15,61,46,.55), rgba(15,61,46,.85)),
+    url("../Img/Macetas/hero.jpeg") center/cover no-repeat;
+  display:flex;                /* centra vertical */
+  align-items:center;
+}
+.hero .headline{ font-size:clamp(30px,6vw,56px); font-weight:900; line-height:1.08 }
+.hero .tag{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
+  border-radius:999px; padding:.4rem .9rem; display:inline-block;
+}
+
+/* ===== Pills / badges ===== */
+.pill{
+  display:inline-block; padding:.35rem .75rem; border-radius:999px;
+  background:var(--vv-soft); color:var(--vv-main); font-weight:600; font-size:.9rem;
+}
+.brandbar{ display:flex; gap:.65rem; flex-wrap:wrap }
+.brandbar .pill{ background:#e7f2ee; color:#0f3d2e }
+
+/* ===== Cards y contenedores visuales ===== */
+.vv-card{
+  border:0; border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+/* .vv-card img{ width:100%; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,.12); } */
+
+.vv-card-img img{ width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* Macetas: altura adaptable por viewport (sin distorsión) */
+.vv-card-macetas{
+  display:block; width:100%;
+  height: clamp(160px, 28vw, 280px);
+  object-fit: cover; border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+/* Fondo suave secciones */
+.bg-soft{ background:var(--vv-soft) }
+
+/* ===== Comparador antes/después ===== */
+.compare{
+  position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.compare img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.compare .after{ clip-path:inset(0 0 0 50%) }
+.compare .handle{ position:absolute; inset:0; display:flex; justify-content:center; pointer-events:none }
+.compare .bar{ width:3px; background:#fff; height:100%; box-shadow:0 0 0 2px rgba(0,0,0,.1) }
+.compare .knob{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border-radius:50%; background:#fff;
+  display:grid; place-items:center; box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+
+/* ===== Footer ===== */
+footer{ background:var(--vv-deep); color:#dfe8e3 }
+
+/* ===== Imágenes dentro de enlaces ===== */
+/* No achiques todas; limita el estilo al logo del navbar */
+a img{ height:auto; width:auto; border-radius:0 }
+.navbar-brand > img{ width:55px; height:auto; border-radius:10px }
+
+/* Swiper de pérgolas: card limpia, sin deformaciones */
+.vv-swiper{
+  width: 400px;
+  height: 500px;
+  border-radius:5px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  background:#000; /* evita parpadeo al cargar */
+}
+
+/* Cada slide mantiene proporción agradable (puedes ajustar) */
+.vv-swiper .swiper-slide{
+  aspect-ratio: 16 / 9;       /* cambie a 16/9 o 4/3 si se prefiere */
+  width:100%;
+}
+
+/* Imagen llena el slide y recorta exceso sin distorsión */
+.vv-swiper .swiper-slide img{
+  width:100%;
+  height:100%;
+  object-fit:fill;
+  display:block;
+}
+
+/* Paginación visible sobre la foto */
+.vv-swiper .swiper-pagination-bullet{
+  background:#fff; opacity:.8;
+}
+.vv-swiper .swiper-pagination-bullet-active{
+  opacity:1;
+}
+
+.glightbox img{
+  height: 400px;
+  width: 300px;
+  object-fit: fill;
+  border-radius: 5px;
+  display: flex;
+}
+
+
+
+/* ===== Breakpoints finos ===== */
+@media (max-width: 991.98px){ /* tablets */
+  .navbar .btn{ margin-top:.5rem }
+}
+
+@media (max-width: 575.98px){ /* móviles */
+  .hero{ padding:64px 0 }                      /* aire vertical en móvil */
+  .btn.btn-lg{ padding:.6rem 1rem; font-size:1rem } /* botones no se desbordan */
+  .brandbar{ gap:.5rem }
+  .pill{ font-size:.8rem; padding:.3rem .6rem }
+  .vv-card-macetas{ height: clamp(160px, 40vw, 220px) }
+  .vv-card-img{ aspect-ratio: 4/3; }
+  .glightbox img{ height: 250px; width: 200px;  }
 }
