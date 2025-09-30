@@ -4,64 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Vida Verde Cabo | Vida, Lujo y Arte</title>
+  <link rel="icon" href="../Assets/Img/Icons/VivaVerdeCabo.jpg">
   <meta name="description" content="Pérgolas y macetas de fibra de vidrio, paisajismo y plantas exóticas en Los Cabos. Creamos Vida, Lujo y Arte.">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="../Assets/Css/Style.css">
-
-  <style>
-    :root{
-      --vv-deep:#0f3d2e;   /* fondo header/footer */
-      --vv-main:#1b5e20;   /* botones, acentos oscuros */
-      --vv-accent:#2e7d32; /* títulos/secciones */
-      --vv-soft:#f1f8f6;   /* fondos suaves */
-      --vv-text:#2b2b2b;
-    }
-    body{font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; color:var(--vv-text)}
-    a{color:var(--vv-main)}
-    .btn-vv{background:var(--vv-main); color:#fff; border:none}
-    .btn-vv:hover{background:#154a19; color:#fff}
-    .section-title{color:var(--vv-accent); font-weight:800; letter-spacing:.5px}
-    .subtle{color:#5b6b61}
-    .hero{
-      position:relative; min-height:80vh; color:#fff;
-      background:linear-gradient( to bottom, rgba(15,61,46,.55), rgba(15,61,46,.85)),
-                 url("img/hero.jpg") center/cover no-repeat;
-    }
-    .hero .headline{font-size:clamp(32px,5vw,64px); font-weight:900; line-height:1.05}
-    .hero .tag{background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); backdrop-filter:blur(6px); border-radius:999px; padding:.4rem .9rem; display:inline-block}
-    .pill{display:inline-block; padding:.35rem .75rem; border-radius:999px; background:var(--vv-soft); color:var(--vv-main); font-weight:600; font-size:.9rem}
-    .vv-card{border:0; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.06)}
-    .vv-icon{width:56px; height:56px; display:grid; place-items:center; border-radius:14px; background:var(--vv-soft); color:var(--vv-main); font-size:26px}
-    .bg-soft{background:var(--vv-soft)}
-    /* Before/After slider */
-    .compare{
-      position:relative; aspect-ratio: 16/9; border-radius:18px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.08)
-    }
-    .compare img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-    .compare .after{clip-path:inset(0 0 0 50%)}
-    .compare .handle{
-      position:absolute; inset:0; display:flex; justify-content:center
-    }
-    .compare .bar{
-      width:3px; background:#fff; height:100%; box-shadow:0 0 0 2px rgba(0,0,0,.1)
-    }
-    .compare .knob{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:44px; height:44px; border-radius:50%;
-      background:#fff; display:grid; place-items:center; box-shadow:0 6px 20px rgba(0,0,0,.18)
-    }
-    footer{background:var(--vv-deep); color:#dfe8e3}
-    .logo-word{letter-spacing:.5px}
-    .brandbar{
-      display:flex; gap:.65rem; flex-wrap:wrap
-    }
-    .brandbar .pill{background:#e7f2ee; color:#0f3d2e}
-  </style>
 </head>
 
 <body>
@@ -393,49 +348,8 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    // Año dinámico
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Swiper (pérgolas y arte)
-    new Swiper('.swiper', {
-      loop: true,
-      spaceBetween: 16,
-      autoplay: { delay: 3500, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-    });
-
-    // Lightbox
-    const lightbox = GLightbox({ selector: '.glightbox' });
-
-    // AOS
-    AOS.init({ duration: 700, once: true, offset: 80 });
-
-    // Comparador antes/después
-    (function(){
-      const cmp = document.getElementById('compare');
-      const after = cmp.querySelector('.after');
-      const knob  = cmp.querySelector('.knob');
-      const bar   = cmp.querySelector('.bar');
-      function setSplit(x){
-        const r = cmp.getBoundingClientRect();
-        let p = (x - r.left) / r.width;
-        p = Math.max(0.05, Math.min(0.95, p));
-        after.style.clipPath = `inset(0 0 0 ${p*100}%)`;
-        knob.style.left = `${p*100}%`;
-      }
-      setSplit(cmp.getBoundingClientRect().left + cmp.getBoundingClientRect().width*0.5);
-      let dragging=false;
-      const move = e => { if(!dragging) return; setSplit((e.touches?e.touches[0].clientX:e.clientX)); };
-      const start = e => { dragging=true; move(e); };
-      const stop = ()=> dragging=false;
-      cmp.addEventListener('mousedown', start);
-      cmp.addEventListener('mousemove', move);
-      window.addEventListener('mouseup', stop);
-      cmp.addEventListener('touchstart', start, {passive:true});
-      cmp.addEventListener('touchmove', move, {passive:true});
-      window.addEventListener('touchend', stop);
-    })();
-  </script>
+  
+  <script src="../Assets/Js/App.js"></script>
 </body>
 </html>
+
