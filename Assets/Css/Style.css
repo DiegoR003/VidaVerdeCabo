@@ -131,19 +131,135 @@ a img{ height:auto; width:auto; border-radius:0 }
   opacity:1;
 }
 
-.glightbox img{
-  height: 400px;
-  width: 300px;
-  object-fit: fill;
-  border-radius: 5px;
-  display: flex;
+.glightbox img{ height: 400px; width: 300px; object-fit: fill; border-radius: 5px; align-self: center; display: flex;}
+
+
+/* === Compactar y ordenar la sección Decofibra (sin tocar tu HTML) === */
+#colaboracion .container{
+  max-width: 1000px;          /* limita el ancho total de la sección */
 }
+
+/* Título y chip más discretos */
+#colaboracion .section-title{
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin-bottom: .4rem;
+}
+.deco-chip{
+  padding:.35rem .6rem !important;
+  gap:.45rem !important;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+.deco-logo{ width:28px !important; height:28px !important; }
+.deco-name{ font-weight:800; font-size: .95rem; }
+.deco-sub{ font-size:.8rem; opacity:.75; }
+
+/* Card de texto más compacta */
+#colaboracion .vv-card.deco-card{
+  padding: 1rem !important;
+  border-radius: 14px;
+}
+
+/* --- MOSAICO / IMÁGENES (tamaño controlado) --- */
+.deco-mosaic{
+  display:grid; gap:10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* En lugar de aspect-ratio grande, fijamos ALTO con recorte elegante */
+.deco-tile{
+  height: 210px;              /* altura sobria en desktop */
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  background:#000;
+}
+.deco-tile img{
+  width:100%; height:100%; object-fit:cover; object-position:center; display:block;
+}
+.deco-tile{ height: 180px; }    /* o 170px si prefieres */
+
+
+
+/* ===== Meta de la sección con logo pequeño ===== */
+.deco-meta{
+  position: relative;
+  padding-top: .25rem;
+}
+.brand-chip-mini{
+  position: absolute;
+  right: 0; top: 0;
+  display:inline-flex; align-items:center; gap:.45rem;
+  background:#e7f2ee; color:#0f3d2e;
+  border-radius: 999px; padding:.3rem .6rem;
+  font-weight:700; box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.brand-chip-mini img{
+  width:26px; height:26px; border-radius:8px; object-fit:cover; display:block;
+}
+@media (max-width: 575.98px){
+  .brand-chip-mini{ right: 50%; transform: translateX(50%); top:-6px; }
+}
+
+/* ===== Listas con check ===== */
+.deco-list li{
+  display:flex; gap:.6rem; align-items:flex-start; margin:.35rem 0; color:#405248;
+}
+.deco-list i{ color:var(--vv-main); margin-top:.15rem; }
+
+/* ===== Mini mosaico de imágenes (2x2) ===== */
+.deco-mosaic{
+  display:grid; gap:10px; grid-template-columns: repeat(2, 1fr);
+}
+.deco-mosaic.mini .deco-tile{ height: 120px; }
+
+.deco-tile{
+  display:block; border-radius:12px; overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08); background:#000;
+}
+.deco-tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ===== Swiper slim para la tarjeta de pérgolas dentro de la sección ===== */
+
+
+.vv-swiper.slim .swiper-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+
+/* Contenedor con proporción 9:16 y esquinas */
+.video-cover{
+  width: 50%;
+  max-width: 420px;             /* 360–480px a gusto */
+  aspect-ratio: 9 / 16;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+  background:#000;
+  justify-items: center;
+}
+.video-cover video{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;            /* adiós barras negras */
+  object-position: center;
+  display: block;
+}
+
+
+/* En desktop, un video vertical no debe ocupar todo el ancho: */
+@media (min-width: 992px){
+  .video-vertical-limit{ max-width: 420px; margin-left:auto; } /* ajústalo a 360–480px si quieres */
+}
+
+
+
+
 
 
 
 /* ===== Breakpoints finos ===== */
 @media (max-width: 991.98px){ /* tablets */
   .navbar .btn{ margin-top:.5rem }
+  .deco-mosaic.mini .deco-tile{ height: 140px; }
+ 
 }
 
 @media (max-width: 575.98px){ /* móviles */
@@ -154,4 +270,6 @@ a img{ height:auto; width:auto; border-radius:0 }
   .vv-card-macetas{ height: clamp(160px, 40vw, 220px) }
   .vv-card-img{ aspect-ratio: 4/3; }
   .glightbox img{ height: 250px; width: 200px;  }
+   .vv-swiper  {  width: 250px; }
+  
 }
