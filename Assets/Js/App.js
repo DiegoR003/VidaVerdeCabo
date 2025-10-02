@@ -126,4 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
+// Carrusel de marcas
+new Swiper('.brands-swiper', {
+  loop: true,
+  grabCursor: true,
+  speed: 700,
+  spaceBetween: 28,
+  autoplay: { delay: 1800, disableOnInteraction: false },
+  navigation: { nextEl: '#brands-next', prevEl: '#brands-prev' },
+  slidesPerView: 2,
+  breakpoints: {
+    576:  { slidesPerView: 3 },
+    768:  { slidesPerView: 4 },
+    992:  { slidesPerView: 5 },
+    1200: { slidesPerView: 7 }
+  }
+});
+
 

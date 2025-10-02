@@ -425,6 +425,9 @@ a img{ height:auto; width:auto; border-radius:0 }
   filter: brightness(1.05); 
 }
 
+.img-transparent {
+  background: transparent !important;  /* elimina cualquier fondo aplicado */
+}
 
 
 
@@ -469,4 +472,74 @@ a img{ height:auto; width:auto; border-radius:0 }
 .arte-slide{ border-radius:16px; }
 .arte-chip{ padding:12px 14px; } 
 }
+
+/* ==== Banner de marcas ==== */
+.brands-section{
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(46,125,50,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(15,61,46,.14), transparent 55%),
+    var(--vv-soft);
+}
+
+.brands-swiper{
+  padding: 18px 56px;              /* aire lateral */
+  position: relative;
+}
+
+
+.logo-client { width: 120px; height: auto; filter: brightness(0) saturate(100%); /* Convierte todo a negro */ }
+
+
+
+
+
+/* FLECHAS: más a las orillas */
+.brands-swiper .swiper-button-prev,
+.brands-swiper .swiper-button-next {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+  color: #fff;
+}
+
+.brands-swiper .swiper-button-prev {
+  left: 5px;   /* pegado a la esquina izquierda */
+}
+
+.brands-swiper .swiper-button-next {
+  right: 5px;  /* pegado a la esquina derecha */
+}
+
+.brands-swiper .swiper-button-prev:after,
+.brands-swiper .swiper-button-next:after {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+/* Cada slide del logo */
+.brands-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;  /* aire interno para que no se peguen */
+}
+
+/* Caja de logo con tamaño fijo */
+.brand-logo {
+  width: 140px;
+  height: 80px;   /* altura más uniforme */
+  object-fit: contain; /* mantiene proporción */
+  object-position: center; /* centrado */
+
+  transition: transform .25s ease, filter .25s ease, opacity .25s ease;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 575.98px){
+  .brands-swiper { padding: 12px 36px; }
+  .brand-logo { width: 110px; height: 60px; }
+}
+
 
