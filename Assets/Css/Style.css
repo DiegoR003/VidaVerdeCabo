@@ -196,9 +196,6 @@ a img{ height:auto; width:auto; border-radius:0 }
 .brand-chip-mini img{
   width:26px; height:26px; border-radius:8px; object-fit:cover; display:block;
 }
-@media (max-width: 575.98px){
-  .brand-chip-mini{ right: 50%; transform: translateX(50%); top:-6px; }
-}
 
 /* ===== Listas con check ===== */
 .deco-list li{
@@ -227,7 +224,7 @@ a img{ height:auto; width:auto; border-radius:0 }
 /* Contenedor con proporción 9:16 y esquinas */
 .video-cover{
   width: 50%;
-  max-width: 420px;             /* 360–480px a gusto */
+  max-width: 480px;             /* 360–480px a gusto */
   aspect-ratio: 9 / 16;
   border-radius: 5px;
   overflow: hidden;
@@ -244,22 +241,94 @@ a img{ height:auto; width:auto; border-radius:0 }
 }
 
 
+/* ===== Carrusel mixto de medios (fotos + videos) ===== */
+.vv-media-swiper{
+  width: 100%;
+  max-width: 420px;                 /* tamaño elegante en desktop */
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+  background: #000;
+}
+
+/* Vertical 9:16 (ideal para tus videos) */
+.vv-media-swiper.vertical .swiper-slide{ aspect-ratio: 9 / 16; }
+
+/* Variante horizontal (por si la necesitas en otro lado) */
+.vv-media-swiper.horizontal .swiper-slide{ aspect-ratio: 16 / 9; }
+
+/* Los medios llenan el slide sin deformación visible */
+.vv-media-swiper .swiper-slide > img,
+.vv-media-swiper .swiper-slide > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 /* recorta lo que sobra */
+  object-position: center;
+  display: block;
+  background:#000;
+}
+
+/* Paginación y flechas */
+.vv-media-swiper .swiper-pagination-bullet{
+  background:#fff; opacity:.9;
+}
+.vv-media-swiper .swiper-pagination-bullet-active{ opacity:1; }
+.vv-media-swiper .swiper-button-prev,
+.vv-media-swiper .swiper-button-next{
+  color:#fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));
+}
+
+
+/* ===== Carrusel para la galería exotica ===== */
+/*  */
+.vv-gallery-swiper{
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 8px 18px;                 /* deja aire para las flechas */
+  background: transparent;
+}
+
+/* Grid interno de cada slide (3 × 2) */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gallery-grid a{
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  background:#000;
+}
+.gallery-grid img{
+  width: 100%;
+  height: clamp(200px, 32vw, 360px);  /* alto coherente y responsive */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Flechas */
+.vv-gallery-swiper .swiper-button-prev,
+.vv-gallery-swiper .swiper-button-next{
+  color:#1b5e20;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.25));
+}
+
+
+
 /* En desktop, un video vertical no debe ocupar todo el ancho: */
 @media (min-width: 992px){
   .video-vertical-limit{ max-width: 420px; margin-left:auto; } /* ajústalo a 360–480px si quieres */
 }
 
-
-
-
-
-
-
 /* ===== Breakpoints finos ===== */
 @media (max-width: 991.98px){ /* tablets */
   .navbar .btn{ margin-top:.5rem }
   .deco-mosaic.mini .deco-tile{ height: 140px; }
- 
+  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 575.98px){ /* móviles */
@@ -271,5 +340,164 @@ a img{ height:auto; width:auto; border-radius:0 }
   .vv-card-img{ aspect-ratio: 4/3; }
   .glightbox img{ height: 250px; width: 200px;  }
    .vv-swiper  {  width: 250px; }
+    .vv-media-swiper{ max-width: 300px; margin-inline:auto; }
+   .brand-chip-mini{ right: 50%; transform: translateX(50%); top:-6px; }
+  .vv-gallery-swiper{ padding: 0 10px; }
+  .gallery-grid{ grid-template-columns: 1fr; }
+  .gallery-grid img{ height: clamp(220px, 55vw, 340px); width: 100%;}
+  /* Mostrar TODAS las baldosas en móvil (anula d-none d-sm-block) */
+  .deco-mosaic.mini .d-none.d-sm-block{
+    display: block !important;
+  }
+
+  /* La mini-mosaico en 2 columnas en móvil */
+  .deco-mosaic.mini{
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px;
+  }
+
+  /* Alto controlado para cada tile, sin deformación */
+  .deco-mosaic.mini .deco-tile{
+    height: 130px;                /* ajusta 120–160px a tu gusto */
+  }
+  .deco-mosaic.mini .deco-tile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;             /* recorta sin deformar */
+    display: block;
+  }
+ 
+  /* Redes sociales en móvil: 1 por fila, full-width y centradas */
+#contacto .d-flex.gap-2.mt-3{
+  flex-direction: column;      /* apila los botones */
+  gap: .6rem;                  /* espacio vertical uniforme */
+}
+
+#contacto .d-flex.gap-2.mt-3 .btn{
+  width: 100%;                 /* que ocupen todo el ancho */
+  justify-content: center;     /* contenido centrado */
+  padding: .85rem 1rem;        /* área de toque más grande */
+  font-weight: 700;            /* mejor legibilidad */
+  border-width: 2px;           /* borde más marcado */
+}
+
+#contacto .d-flex.gap-2.mt-3 .btn i{
+  font-size: 1.05rem;          /* icono un pelín más grande */
+  margin-right: .5rem;         /* separación del texto */
+}
+
   
+}
+
+/* ===== ARTE: fondo + brillo sutil ===== */
+.arte-section{
+  position:relative;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(46,125,50,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(15,61,46,.18), transparent 55%),
+    var(--vv-soft);
+  overflow:hidden;
+}
+
+/* Cintilla animada */
+.arte-marquee{
+  position:relative; height:38px; margin-bottom:12px;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.arte-marquee .track{
+  position:absolute; inset:0; display:flex; align-items:center; gap:32px;
+  white-space:nowrap; font-weight:800; letter-spacing:.15em;
+  color:#133b2e; opacity:.15;
+  animation: arte-marquee 18s linear infinite;
+}
+.arte-marquee span{ font-size:14px; }
+@keyframes arte-marquee{ to { transform: translateX(-50%); }}
+
+/* Swiper contenedor */
+.arte-swiper{
+  --h: clamp(260px, 52vh, 520px);
+  border-radius:20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.12);
+  background:#0b1f19;
+}
+.arte-swiper .swiper-wrapper{ align-items:stretch; }
+.arte-swiper .swiper-slide { display:flex; height:var(--h);  }
+
+
+.arte-slide{
+  position:relative; margin:0; width:100%; height:100%; overflow:hidden;
+  border-radius:10px;
+}
+.arte-slide img{
+  width:100%; height:100%; object-fit:fill;
+  transform: scale(1.06);
+  animation: kb 12s ease-in-out both alternate;
+  filter: saturate(1.05) contrast(1.02);
+}
+@keyframes kb{
+  0%{ transform: scale(1.06) translate3d(0,0,0); }
+  100%{ transform: scale(1.14) translate3d(0, -1.5%, 0); }
+}
+
+/* Caption flotante */
+.arte-slide .caption{
+  position:absolute; inset:auto 0 0 0; padding:18px 20px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,.45), transparent 65%);
+  color:#fff;
+}
+.arte-slide .caption h3{ margin:.25rem 0; font-size:clamp(18px,2.4vw,26px); font-weight:800; }
+.arte-slide .caption p{ margin:0; opacity:.9; font-size:clamp(12px,1.8vw,14px); }
+.arte-slide .pill{
+  display:inline-block; padding:.3rem .6rem; border-radius:999px;
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(4px);
+  font-weight:700; font-size:.8rem;
+}
+
+/* Navegación Swiper */
+.arte-swiper .swiper-button-prev,
+.arte-swiper .swiper-button-next{
+  width:44px; height:44px; border-radius:12px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter: blur(4px);
+  color:#fff;
+}
+.arte-swiper .swiper-button-prev:after,
+.arte-swiper .swiper-button-next:after{ font-size:16px; font-weight:900; }
+.arte-swiper .swiper-pagination-bullet{ background:#fff; opacity:.6; }
+.arte-swiper .swiper-pagination-bullet-active{ opacity:1; }
+
+/* Chips */
+.arte-chip{
+  display:flex; gap:12px; padding:14px 16px; border-radius:14px;
+  background:#fff; box-shadow:0 10px 26px rgba(0,0,0,.06);
+  align-items:flex-start; transition: transform .25s ease, box-shadow .25s ease;
+}
+.arte-chip:hover{ transform: translateY(-3px); box-shadow:0 18px 40px rgba(0,0,0,.10); }
+.arte-chip i{ font-size:22px; color:var(--vv-main); margin-top:2px; }
+.arte-chip .t{ font-weight:800; color:#1c2d25; }
+.arte-chip .d{ font-size:.92rem; color:#5a6b62; }
+
+/* Espaciados */
+.py-6{ padding-top:4.5rem; padding-bottom:4.5rem; }
+
+/* Responsive soft */
+@media (max-width: 575.98px){
+  .arte-swiper{ border-radius:16px; }
+  .arte-slide{ border-radius:16px; }
+  .arte-chip{ padding:12px 14px; }
+}
+
+
+/* Efecto de acercamiento/alejamiento en hover */
+.img-zoom {
+  transition: transform 0.6s ease, filter 0.6s ease;
+  transform: scale(1);
+  filter: brightness(1);
+  cursor: pointer;
+}
+
+.img-zoom:hover {
+  transform: scale(1.08);   /* acercamiento */
+  filter: brightness(1.05); /* un poquito más clara */
 }
