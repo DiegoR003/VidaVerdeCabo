@@ -25,36 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ duration: 700, once: true, offset: 80 });
   }
 
-  /* === Comparador antes/después === */
-  (function () {
-    const cmp = document.getElementById('compare');
-    if (!cmp) return;
-    const after = cmp.querySelector('.after');
-    const knob = cmp.querySelector('.knob');
 
-    function setSplitX(x) {
-      const r = cmp.getBoundingClientRect();
-      let p = (x - r.left) / r.width;
-      p = Math.max(0.05, Math.min(0.95, p));
-      after.style.clipPath = `inset(0 0 0 ${p * 100}%)`;
-      knob.style.left = `${p * 100}%`;
-    }
-    const r = cmp.getBoundingClientRect();
-    setSplitX(r.left + r.width * 0.5);
-
-    let dragging = false;
-    const move = (e) => { if (!dragging) return; setSplitX((e.touches ? e.touches[0].clientX : e.clientX)); };
-    const start = (e) => { dragging = true; move(e); };
-    const stop = () => { dragging = false; };
-
-    cmp.addEventListener('mousedown', start);
-    window.addEventListener('mouseup', stop);
-    cmp.addEventListener('mousemove', move);
-
-    cmp.addEventListener('touchstart', start, { passive: true });
-    window.addEventListener('touchend', stop);
-    cmp.addEventListener('touchmove', move, { passive: true });
-  })();
 
   /* === Carrusel mixto (fotos + videos) .vv-media-swiper === */
   if (window.Swiper) {
@@ -80,15 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         el.querySelectorAll('video').forEach((v) => { v.pause(); v.currentTime = 0; });
       };
 
-      // Al cambiar de slide, reproducir el video activo (si lo hay)
+      // Al cambiar de slide, reproducir el video activo si es que lo hay
       swiper.on('slideChangeTransitionStart', () => {
         pauseAllVideos();
         const activeVideo = el.querySelector('.swiper-slide-active video');
         if (activeVideo) {
-          activeVideo.muted = true; // necesario p/ autoplay móvil
+          activeVideo.muted = true; 
           activeVideo.play().catch(() => {
-            // Algunos navegadores bloquean autoplay si el usuario no interactuó
-            // No hacemos nada: el slide avanzará por autoplay de Swiper
+            
           });
         }
       });
@@ -112,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextEl: '.vv-gallery-swiper .swiper-button-next',
         prevEl: '.vv-gallery-swiper .swiper-button-prev',
       },
-      // Si quieres bullets, descomenta y añade el div en HTML
-      // pagination: { el: '.vv-gallery-swiper .swiper-pagination', clickable: true },
+      
       keyboard: { enabled: true },
     });
   }
@@ -140,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       prevEl: '.arte-swiper .swiper-button-prev',
     },
     on: {
-      /* Reinicia el Ken-Burns para el slide activo (se siente más “vivo”) */
+      /* Reinicia el Ken-Burns para el slide activo  */
       slideChangeTransitionStart(sw) {
         sw.slides.forEach(s => {
           const img = s.querySelector('img');
