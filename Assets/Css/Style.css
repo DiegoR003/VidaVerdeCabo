@@ -518,16 +518,15 @@ a img{ height:auto; width:auto; border-radius:0 }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;  /* aire interno para que no se peguen */
+  padding: 10px;  
 }
 
 /* Caja de logo con tamaño fijo */
 .brand-logo {
   width: 140px;
-  height: 80px;   /* altura más uniforme */
-  object-fit: contain; /* mantiene proporción */
-  object-position: center; /* centrado */
-
+  height: 80px;   
+  object-fit: contain;
+  object-position: center; 
   transition: transform .25s ease, filter .25s ease, opacity .25s ease;
 }
 
@@ -539,7 +538,7 @@ a img{ height:auto; width:auto; border-radius:0 }
 }
 
 
-/* Mapas con bordes redondos y recorte interno */
+/* Mapas  */
 .map-embed {
   height: 250px;
   width: 300px;
