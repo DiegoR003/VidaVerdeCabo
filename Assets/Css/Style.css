@@ -1,0 +1,545 @@
+/* ===== Reset fino  ===== */
+html, body { overflow-x: hidden; }
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ===== Paleta y tipografía ===== */
+:root{
+  --vv-deep:#0f3d2e;
+  --vv-main:#1b5e20;
+  --vv-accent:#2e7d32;
+  --vv-soft:#f1f8f6;
+  --vv-text:#2b2b2b;
+}
+body{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+  color:var(--vv-text);
+}
+a{ color:var(--vv-main) }
+
+/* ===== Botones y títulos ===== */
+.btn-vv{ background:var(--vv-main); color:#fff; border:none }
+.btn-vv:hover{ background:#154a19; color:#fff }
+.section-title{ color:var(--vv-accent); font-weight:800; letter-spacing:.5px }
+.subtle{ color:#5b6b61 }
+
+/* ===== Navbar / logo ===== */
+.navbar{ min-height:56px }
+.brand-logo{ height:32px; width:auto; border-radius:15px }
+.logo-word{ letter-spacing:.5px; white-space:nowrap }
+
+/* ===== Hero (altura real en móvil) ===== */
+.hero{
+  position:relative;
+  min-height:100svh;           /* altura real visible en móviles */
+  min-height:100vh;            /* fallback */
+  color:#fff;
+  background:
+    linear-gradient(to bottom, rgba(15,61,46,.55), rgba(15,61,46,.85)),
+    url("../Img/Macetas/hero.jpeg") center/cover no-repeat;
+  display:flex;                /* centra vertical */
+  align-items:center;
+}
+.hero .headline{ font-size:clamp(30px,6vw,56px); font-weight:900; line-height:1.08 }
+.hero .tag{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
+  border-radius:999px; padding:.4rem .9rem; display:inline-block;
+}
+
+/* ===== Pills / badges ===== */
+.pill{
+  display:inline-block; padding:.35rem .75rem; border-radius:999px;
+  background:var(--vv-soft); color:var(--vv-main); font-weight:600; font-size:.9rem;
+}
+.brandbar{ display:flex; gap:.65rem; flex-wrap:wrap }
+.brandbar .pill{ background:#e7f2ee; color:#0f3d2e }
+
+/* ===== Cards y contenedores visuales ===== */
+.vv-card{
+  border:0; border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+/* .vv-card img{ width:100%; aspect-ratio: 16/10; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,.12); } */
+
+.vv-card-img img{ width: 100%; height: 100%; object-fit: cover; display: block;
+}
+
+/* Macetas: altura adaptable por viewport (sin distorsión) */
+.vv-card-macetas{
+  display:block; width:100%;
+  height: clamp(160px, 28vw, 280px);
+  object-fit: cover; border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+/* Fondo suave secciones */
+.bg-soft{ background:var(--vv-soft) }
+
+/* ===== Comparador antes/después ===== */
+.compare{
+  position:relative; aspect-ratio:16/9; border-radius:18px; overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.compare img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+.compare .after{ clip-path:inset(0 0 0 50%) }
+.compare .handle{ position:absolute; inset:0; display:flex; justify-content:center; pointer-events:none }
+.compare .bar{ width:3px; background:#fff; height:100%; box-shadow:0 0 0 2px rgba(0,0,0,.1) }
+.compare .knob{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border-radius:50%; background:#fff;
+  display:grid; place-items:center; box-shadow:0 6px 20px rgba(0,0,0,.18);
+}
+
+/* ===== Footer ===== */
+footer{ background:var(--vv-deep); color:#dfe8e3 }
+
+/* ===== Imágenes dentro de enlaces ===== */
+/* No achiques todas; limita el estilo al logo del navbar */
+a img{ height:auto; width:auto; border-radius:0 }
+.navbar-brand > img{ width:55px; height:auto; border-radius:24px }
+
+/* Swiper de pérgolas */
+.vv-swiper{
+  width: 400px;
+  height: 500px;
+  border-radius:5px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
+  background:#000; 
+}
+
+/* Cada slide mantiene proporción agradable */
+.vv-swiper .swiper-slide{
+  aspect-ratio: 16 / 9;       /* cambie a 16/9 o 4/3 si se prefiere */
+  width:100%;
+}
+
+/* Imagen llena  */
+.vv-swiper .swiper-slide img{
+  width:100%;
+  height:100%;
+  object-fit:fill;
+  display:block;
+}
+
+/* Paginación visible sobre la foto */
+.vv-swiper .swiper-pagination-bullet{
+  background:#fff; opacity:.8;
+}
+.vv-swiper .swiper-pagination-bullet-active{
+  opacity:1;
+}
+
+.glightbox img{ height: 400px; width: 300px; object-fit: fill; border-radius: 5px; align-self: center; display: flex;}
+
+
+/* === Compactar y ordenar la sección Decofibra  === */
+#colaboracion .container{
+  max-width: 1000px;          /* limita el ancho total de la sección */
+}
+
+/* Título y chip más discretos */
+#colaboracion .section-title{
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin-bottom: .4rem;
+}
+.deco-chip{
+  padding:.35rem .6rem !important;
+  gap:.45rem !important;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+.deco-logo{ width:28px !important; height:28px !important; }
+.deco-name{ font-weight:800; font-size: .95rem; }
+.deco-sub{ font-size:.8rem; opacity:.75; }
+
+/* Card de texto más compacta */
+#colaboracion .vv-card.deco-card{
+  padding: 1rem !important;
+  border-radius: 14px;
+}
+
+/* --- MOSAICO / IMÁGENES  --- */
+.deco-mosaic{
+  display:grid; gap:10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+.deco-tile{
+  height: 210px;              /* altura sobria en desktop */
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  background:#000;
+}
+.deco-tile img{
+  width:100%; height:100%; object-fit:cover; object-position:center; display:block;
+}
+.deco-tile{ height: 180px; }    
+
+
+
+/* ===== Meta de la sección con logo pequeño ===== */
+.deco-meta{
+  position: relative;
+  padding-top: .25rem;
+}
+.brand-chip-mini{
+  position: absolute;
+  right: 0; top: 0;
+  display:inline-flex; align-items:center; gap:.45rem;
+  background:#e7f2ee; color:#0f3d2e;
+  border-radius: 999px; padding:.3rem .6rem;
+  font-weight:700; box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.brand-chip-mini img{
+  width:26px; height:26px; border-radius:8px; object-fit:cover; display:block;
+}
+
+/* ===== Listas con check ===== */
+.deco-list li{
+  display:flex; gap:.6rem; align-items:flex-start; margin:.35rem 0; color:#405248;
+}
+.deco-list i{ color:var(--vv-main); margin-top:.15rem; }
+
+/* ===== Mini mosaico de imágenes (2x2) ===== */
+.deco-mosaic{
+  display:grid; gap:10px; grid-template-columns: repeat(2, 1fr);
+}
+.deco-mosaic.mini .deco-tile{ height: 120px; }
+
+.deco-tile{
+  display:block; border-radius:12px; overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,.08); background:#000;
+}
+.deco-tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ===== Swiper slim para la tarjeta de pérgolas dentro de la sección ===== */
+.vv-swiper.slim .swiper-slide img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+
+/* Contenedor con proporción 9:16 y esquinas */
+.video-cover{
+  width: 50%;
+  max-width: 480px;            
+  aspect-ratio: 9 / 16;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+  background:#000;
+  justify-items: center;
+}
+.video-cover video{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;           
+  object-position: center;
+  display: block;
+}
+
+
+/* ===== Carrusel mixto de medios (fotos + videos) ===== */
+.vv-media-swiper{
+  width: 100%;
+  max-width: 420px;                
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(0,0,0,.14);
+  background: #000;
+}
+
+/* Vertical 9:16  */
+.vv-media-swiper.vertical .swiper-slide{ aspect-ratio: 9 / 16; }
+
+/* Variante horizontal  */
+.vv-media-swiper.horizontal .swiper-slide{ aspect-ratio: 16 / 9; }
+
+/* Los medios llenan el slide sin deformación visible */
+.vv-media-swiper .swiper-slide > img,
+.vv-media-swiper .swiper-slide > video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                 
+  object-position: center;
+  display: block;
+  background:#000;
+}
+
+/* Paginación y flechas */
+.vv-media-swiper .swiper-pagination-bullet{
+  background:#fff; opacity:.9;
+}
+.vv-media-swiper .swiper-pagination-bullet-active{ opacity:1; }
+.vv-media-swiper .swiper-button-prev,
+.vv-media-swiper .swiper-button-next{
+  color:#fff; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4));
+}
+
+
+/* ===== Carrusel para la galería exotica ===== */
+/*  */
+.vv-gallery-swiper{
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 8px 18px;              
+  background: transparent;
+}
+
+/* Grid interno de cada slide (3 × 2) */
+.gallery-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.gallery-grid a{
+  display: block;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+  background:#000;
+}
+.gallery-grid img{
+  width: 100%;
+  height: clamp(200px, 32vw, 360px);  /* alto coherente y responsive */
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Flechas */
+.vv-gallery-swiper .swiper-button-prev,
+.vv-gallery-swiper .swiper-button-next{
+  color:#1b5e20;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.25));
+}
+
+
+/* ===== ARTE: fondo + brillo sutil ===== */
+.arte-section{
+  position:relative;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(46,125,50,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(15,61,46,.18), transparent 55%),
+    var(--vv-soft);
+  overflow:hidden;
+}
+
+/* Cintilla animada */
+.arte-marquee{
+  position:relative; height:38px; margin-bottom:12px;
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+.arte-marquee .track{
+  position:absolute; inset:0; display:flex; align-items:center; gap:32px;
+  white-space:nowrap; font-weight:800; letter-spacing:.15em;
+  color:#133b2e; opacity:.15;
+  animation: arte-marquee 18s linear infinite;
+}
+.arte-marquee span{ font-size:14px; }
+@keyframes arte-marquee{ to { transform: translateX(-50%); }}
+
+/* Swiper contenedor */
+.arte-swiper{
+  --h: clamp(260px, 52vh, 520px);
+  border-radius:20px;
+  box-shadow:0 18px 50px rgba(0,0,0,.12);
+  background:#0b1f19;
+}
+.arte-swiper .swiper-wrapper{ align-items:stretch; }
+.arte-swiper .swiper-slide { display:flex; height:var(--h);  }
+
+
+.arte-slide{
+  position:relative; margin:0; width:100%; height:100%; overflow:hidden;
+  border-radius:10px;
+}
+.arte-slide img{
+  width:100%; height:100%; object-fit:fill;
+  transform: scale(1.06);
+  animation: kb 12s ease-in-out both alternate;
+  filter: saturate(1.05) contrast(1.02);
+}
+@keyframes kb{
+  0%{ transform: scale(1.06) translate3d(0,0,0); }
+  100%{ transform: scale(1.14) translate3d(0, -1.5%, 0); }
+}
+
+/* Caption flotante */
+.arte-slide .caption{
+  position:absolute; inset:auto 0 0 0; padding:18px 20px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,.45), transparent 65%);
+  color:#fff;
+}
+.arte-slide .caption h3{ margin:.25rem 0; font-size:clamp(18px,2.4vw,26px); font-weight:800; }
+.arte-slide .caption p{ margin:0; opacity:.9; font-size:clamp(12px,1.8vw,14px); }
+.arte-slide .pill{
+  display:inline-block; padding:.3rem .6rem; border-radius:999px;
+  background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+  backdrop-filter: blur(4px);
+  font-weight:700; font-size:.8rem;
+}
+
+/* Navegación Swiper */
+.arte-swiper .swiper-button-prev,
+.arte-swiper .swiper-button-next{
+  width:44px; height:44px; border-radius:12px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter: blur(4px);
+  color:#fff;
+}
+.arte-swiper .swiper-button-prev:after,
+.arte-swiper .swiper-button-next:after{ font-size:16px; font-weight:900; }
+.arte-swiper .swiper-pagination-bullet{ background:#fff; opacity:.6; }
+.arte-swiper .swiper-pagination-bullet-active{ opacity:1; }
+
+/* Chips */
+.arte-chip{
+  display:flex; gap:12px; padding:14px 16px; border-radius:14px;
+  background:#fff; box-shadow:0 10px 26px rgba(0,0,0,.06);
+  align-items:flex-start; transition: transform .25s ease, box-shadow .25s ease;
+}
+.arte-chip:hover{ transform: translateY(-3px); box-shadow:0 18px 40px rgba(0,0,0,.10); }
+.arte-chip i{ font-size:22px; color:var(--vv-main); margin-top:2px; }
+.arte-chip .t{ font-weight:800; color:#1c2d25; }
+.arte-chip .d{ font-size:.92rem; color:#5a6b62; }
+
+/* Espaciados */
+.py-6{ padding-top:4.5rem; padding-bottom:4.5rem; }
+
+/* Responsive soft */
+@media (max-width: 575.98px){
+  
+}
+
+.img-zoom {
+  transition: transform 0.6s ease, filter 0.6s ease;
+  transform: scale(1);
+  filter: brightness(1);
+  cursor: pointer;
+}
+
+.img-zoom:hover {
+  transform: scale(1.08);   
+  filter: brightness(1.05); 
+}
+
+.img-transparent {
+  background: transparent !important;  /* elimina cualquier fondo aplicado */
+}
+
+
+
+/* En desktop */
+@media (min-width: 992px){
+  .video-vertical-limit{ max-width: 420px; margin-left:auto; } 
+}
+
+/* ===== Breakpoints finos ===== */
+@media (max-width: 991.98px){ /* tablets */
+  .navbar .btn{ margin-top:.5rem }
+  .deco-mosaic.mini .deco-tile{ height: 140px; }
+  .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 575.98px){ /* móviles */
+  .hero{ padding:64px 0 }                      /* aire vertical en móvil */
+  .btn.btn-lg{ padding:.6rem 1rem; font-size:1rem } 
+  .brandbar{ gap:.5rem }
+  .pill{ font-size:.8rem; padding:.3rem .6rem }
+  .vv-card-macetas{ height: clamp(160px, 40vw, 220px) }
+  .vv-card-img{ aspect-ratio: 4/3; }
+  .glightbox img{ height: 250px; width: 200px;  }
+   .vv-swiper  {  width: 250px; }
+    .vv-media-swiper{ max-width: 300px; margin-inline:auto; }
+   .brand-chip-mini{ right: 50%; transform: translateX(50%); top:-6px; }
+  .vv-gallery-swiper{ padding: 0 10px; }
+  .gallery-grid{ grid-template-columns: 1fr; }
+  .gallery-grid img{ height: clamp(220px, 55vw, 340px); width: 100%;}
+  /* Mostrar TODAS las baldosas en móvil (anula d-none d-sm-block) */
+  .deco-mosaic.mini .d-none.d-sm-block{ display: block !important;}
+   /* La mini-mosaico en 2 columnas en móvil */
+  .deco-mosaic.mini{ grid-template-columns: repeat(2, 1fr) !important; gap: 10px;}
+  /* Alto controlado para cada tile, sin deformación */
+  .deco-mosaic.mini .deco-tile{ height: 130px;}
+  .deco-mosaic.mini .deco-tile img{ width: 100%; height: 100%; object-fit: cover; display: block;}
+  /* Redes sociales en móvil: 1 por fila, full-width y centradas */
+#contacto .d-flex.gap-2.mt-3{ flex-direction: column; gap: .6rem; }
+#contacto .d-flex.gap-2.mt-3 .btn{width: 100%; justify-content: center; padding: .85rem 1rem;  font-weight: 700;  border-width: 2px; }
+#contacto .d-flex.gap-2.mt-3 .btn i{ font-size: 1.05rem; margin-right: .5rem;} 
+.arte-swiper{ border-radius:16px; }
+.arte-slide{ border-radius:16px; }
+.arte-chip{ padding:12px 14px; } 
+}
+
+/* ==== Banner de marcas ==== */
+.brands-section{
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(46,125,50,.18), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(15,61,46,.14), transparent 55%),
+    var(--vv-soft);
+}
+
+.brands-swiper{
+  padding: 18px 56px;              /* aire lateral */
+  position: relative;
+}
+
+
+.logo-client { width: 120px; height: auto; filter: brightness(0) saturate(100%); /* Convierte todo a negro */ }
+
+
+
+
+
+/* FLECHAS: más a las orillas */
+.brands-swiper .swiper-button-prev,
+.brands-swiper .swiper-button-next {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(6px);
+  color: #fff;
+}
+
+.brands-swiper .swiper-button-prev {
+  left: 5px;   /* pegado a la esquina izquierda */
+}
+
+.brands-swiper .swiper-button-next {
+  right: 5px;  /* pegado a la esquina derecha */
+}
+
+.brands-swiper .swiper-button-prev:after,
+.brands-swiper .swiper-button-next:after {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+/* Cada slide del logo */
+.brands-swiper .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;  /* aire interno para que no se peguen */
+}
+
+/* Caja de logo con tamaño fijo */
+.brand-logo {
+  width: 140px;
+  height: 80px;   /* altura más uniforme */
+  object-fit: contain; /* mantiene proporción */
+  object-position: center; /* centrado */
+
+  transition: transform .25s ease, filter .25s ease, opacity .25s ease;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 575.98px){
+  .brands-swiper { padding: 12px 36px; }
+  .brand-logo { width: 110px; height: 60px; }
+}
+
+
